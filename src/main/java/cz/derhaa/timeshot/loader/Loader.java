@@ -10,7 +10,7 @@ import cz.derhaa.timeshot.entity.Entry;
  * @author derhaa
  *
  */
-public interface Load {
+public interface Loader {
 
     List<Entry> getEntries(long startRevision, long endRevision);
     

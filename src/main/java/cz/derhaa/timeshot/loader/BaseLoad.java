@@ -24,7 +24,7 @@ import cz.derhaa.timeshot.entity.Entry;
  * @author derhaa
  *
  */
-abstract public class BaseLoad implements Load {
+abstract public class BaseLoad implements Loader {
 
     private SVNRepository repository;
     /**
@@ -56,13 +56,11 @@ abstract public class BaseLoad implements Load {
             List<Entry> retval = new LinkedList<Entry>();
             for (Iterator entries = logEntries.iterator(); entries.hasNext();) {
                 SVNLogEntry logEntry = (SVNLogEntry) entries.next();
-                
                 StringBuilder sb = new StringBuilder("");
                 if (logEntry.getChangedPaths().size() > 0) {
                     Set pathsSet = logEntry.getChangedPaths().keySet();
                     for (Iterator paths = pathsSet.iterator(); paths.hasNext();) {
-                        SVNLogEntryPath entryPath = (SVNLogEntryPath) logEntry
-                                .getChangedPaths().get(paths.next());
+                        SVNLogEntryPath entryPath = (SVNLogEntryPath) logEntry.getChangedPaths().get(paths.next());
                         /*
                          * SVNLogEntryPath.getPath returns the changed path itself;
                          * 
@@ -83,7 +81,7 @@ abstract public class BaseLoad implements Load {
                         sb.append("\n");
                     }                    
                 }
-                
+                //build entity
                 Entry entry = new Entry(
                         logEntry.getRevision(), 
                         logEntry.getAuthor(),
