@@ -20,13 +20,18 @@ import org.tmatesoft.svn.core.wc.SVNWCUtil;
 import cz.derhaa.timeshot.entity.Entry;
 
 /**
+ * Base interface for loading svn records from repository
  * @author derhaa
  *
  */
 abstract public class BaseLoad implements Load {
-    
-    private SVNRepository repository;
 
+    private SVNRepository repository;
+    /**
+     * @param url repository location
+     * @param name username for reading at least :)
+     * @param password 
+     */
     public BaseLoad(final String url, final String name, final String password) {
         setupLibrary();
         try {
@@ -37,9 +42,10 @@ abstract public class BaseLoad implements Load {
             throw new RuntimeException("error while creating an SVNRepository for the location '"+ url + "': " + e.getMessage(), e);
         }        
     }
-
-    /* (non-Javadoc)
-     * @see cz.derhaa.timeshot.Load#getEntries()
+    /**
+     * Load svn log entries by revision range. Each svn log entry is described
+     * by ${link Entry} object.
+     * @return List<Entry> entiries ${link Entry} objects
      */
     @SuppressWarnings({ "rawtypes" })
     public final List<Entry> getEntries(final long startRevision, final long endRevision) {
@@ -91,9 +97,10 @@ abstract public class BaseLoad implements Load {
             throw new RuntimeException("Problem loading logentries from repository", e);
         }
     }
-    
-    /* (non-Javadoc)
-     * @see cz.derhaa.timeshot.Load#getEntries(org.joda.time.DateTime, org.joda.time.DateTime)
+    /**
+     * Load svn log entries by date range. Each svn log entry is described
+     * by ${link Entry} object.
+     * @return List<Entry> entiries ${link Entry} objects
      */
     public final List<Entry> getEntries(final DateTime from, final DateTime to) {
         try {
@@ -104,6 +111,11 @@ abstract public class BaseLoad implements Load {
             throw new RuntimeException("Problem loading revision for dateFrom: "+from+ " and dateTo: "+to, e);
         }
     }
-    
+    /**
+     * Implementation must inicialize svn repository factory (http/https/svn/file)
+     * @see org.tmatesoft.svn.core.internal.io.dav.DAVRepositoryFactory (http | https)
+     * @see org.tmatesoft.svn.core.internal.io.svn.SVNRepositoryFactoryImpl (svn  | svn+xxx)
+     * @see org.tmatesoft.svn.core.internal.io.fs.FSRepositoryFactory (file:///)
+     */ 
     abstract protected void setupLibrary();
 }
