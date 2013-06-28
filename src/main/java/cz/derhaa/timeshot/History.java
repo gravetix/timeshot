@@ -26,6 +26,7 @@ public class History {
      * revision number, an end revision number, user's account name & password
      * to authenticate him to the server.
      */
+    @SuppressWarnings("rawtypes")
     public static void main(String[] args) {
         /*
          * Default values:
