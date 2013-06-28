@@ -1,4 +1,4 @@
-package cz.derhaa.timeshot;
+package cz.derhaa.timeshot.loader;
 
 import org.tmatesoft.svn.core.internal.io.dav.DAVRepositoryFactory;
 
@@ -13,15 +13,14 @@ public class HttpLoad extends BaseLoad {
      * @param name
      * @param password
      */
-    public HttpLoad(String url, String name, String password) {
+    public HttpLoad(final String url, final String name, final String password) {
         super(url, name, password);
-        // TODO Auto-generated constructor stub
     }
 
     /* (non-Javadoc)
      * @see cz.derhaa.timeshot.LoadStrategy#setupLibrary()
      */
-    public void setupLibrary() {
+    protected final void setupLibrary() {
         DAVRepositoryFactory.setup();
     }
 

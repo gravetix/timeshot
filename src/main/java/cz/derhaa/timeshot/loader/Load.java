@@ -1,6 +1,8 @@
-package cz.derhaa.timeshot;
+package cz.derhaa.timeshot.loader;
 
 import java.util.List;
+
+import org.joda.time.DateTime;
 
 import cz.derhaa.timeshot.entity.Entry;
 
@@ -10,7 +12,8 @@ import cz.derhaa.timeshot.entity.Entry;
  */
 public interface Load {
 
-    void setupLibrary();
-    
     List<Entry> getEntries(long startRevision, long endRevision);
+    
+    List<Entry> getEntries(DateTime from, DateTime to);
+    
 }
