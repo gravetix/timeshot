@@ -6,7 +6,7 @@ import cz.derhaa.timeshot.loader.Loader;
 import cz.derhaa.timeshot.loader.SvnLoad;
 
 /**
- * @author derhaa
+ * @author tomas.cejka
  *
  */
 public class Factory {
