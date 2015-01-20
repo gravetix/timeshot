@@ -5,7 +5,7 @@ import java.util.Date;
 import org.joda.time.DateTime;
 
 /**
- * @author derhaa
+ * @author tomas.cejka
  *
  */
 public class Entry {
