@@ -17,7 +17,7 @@ import org.tmatesoft.svn.core.io.SVNRepositoryFactory;
 import org.tmatesoft.svn.core.wc.SVNWCUtil;
 
 /**
- * @author derhaa
+ * @author tomas.cejka
  *
  */
 public class History {
